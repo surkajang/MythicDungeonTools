@@ -1,4 +1,5 @@
 -- Made by Nnoggie, 2017-2020
+-- Edited by SJ, 2020.12
 local AddonName, MDT = ...
 local L = MDT.L
 local mainFrameStrata = "HIGH"
@@ -219,8 +220,8 @@ MDT.scaleMultiplier = {}
 --lvl 4 affix, lvl 7 affix, tyrannical/fortified, seasonal affix
 local affixWeeks = {
     [1] =  {[1]=11,[2]=3,[3]=10,[4]=121}, -->>Bursting, Volcanic, Fortified
-    [2] =  {[1]=0,[2]=0,[3]=0,[4]=0},
-    [3] =  {[1]=0,[2]=0,[3]=0,[4]=0},
+    [2] =  {[1]=7,[2]=124,[3]=9,[4]=121}, -->>Bolstering, Storming, Tyrannical
+    [3] =  {[1]=123,[2]=12,[3]=10,[4]=121}, -->>Spiteful, Grievous, Fortified
     [4] =  {[1]=0,[2]=0,[3]=0,[4]=0},
     [5] =  {[1]=0,[2]=0,[3]=0,[4]=0},
     [6] =  {[1]=0,[2]=0,[3]=0,[4]=0},
@@ -616,7 +617,7 @@ MDT.dungeonMaps = {
         [1] = "MistsOfTirneScithe",
     },
     [32] = {
-        [0] = "Plaguefall_B",
+        [0] = "Plaguefall",
         [1] = "Plaguefall",
         [2] = "Plaguefall_B",
     },
@@ -2275,12 +2276,12 @@ end
 
 ---IsCurrentPresetFortified
 function MDT:IsCurrentPresetFortified()
-    return self:GetCurrentPreset().week%2 == 0
+    return self:GetCurrentPreset().week%2 == 1
 end
 
 ---IsCurrentPresetTyrannical
 function MDT:IsCurrentPresetTyrannical()
-    return self:GetCurrentPreset().week%2 == 1
+    return not MDT:IsCurrentPresetFortified()
 end
 
 ---MouseDownHook
